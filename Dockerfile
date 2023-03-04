@@ -1,4 +1,4 @@
-FROM python:3.11-alpine as builder
+FROM python:3.11-slim as builder
 
 WORKDIR app
 RUN pip install -U pip setuptools wheel pdm

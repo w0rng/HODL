@@ -8,8 +8,9 @@ authors = [
     {name = "w0rng", email = "me@w0rng.ru"},
 ]
 dependencies = [
-    "dramatiq>=1.14.1",
     "apscheduler>=3.10.1",
+    "sqlalchemy>=2.0.4",
+    "binance-connector>=2.0.0",
 ]
 requires-python = ">=3.11"
 license = {text = "MIT"}

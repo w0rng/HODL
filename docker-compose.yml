@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  hodl_bot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    volumes:
+      - db:/db
+      - ./src:/app
+    command: python main.py
+    env_file: .env
+
+volumes:
+  db:
