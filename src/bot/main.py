@@ -33,7 +33,6 @@ class Bot:
         result = []
         for currency in currencies:
             if datetime.utcnow() < currency.start:
-                print("skip", currency.symbol, flush=True)
                 continue
             if currency.last_update is None:
                 result.append(currency)
