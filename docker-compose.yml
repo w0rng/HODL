@@ -1,7 +1,7 @@
 version: "3.8"
 
 services:
-  hodl_bot:
+  admin_panel: &app
     build:
       context: .
       dockerfile: Dockerfile
@@ -13,6 +13,16 @@ services:
     env_file: .env
     ports:
       - "8000:80"
+
+  bot:
+    <<: *app
+    command: python bot/main.py
+    ports: []
+
+  dramatiq_worker:
+    <<: *app
+    command: dramatiq bot.excanges.binance
+    ports: []
 
   redis:
     image: redis:alpine

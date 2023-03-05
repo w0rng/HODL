@@ -1,17 +1,14 @@
 import hashlib
 
 from sqladmin.authentication import AuthenticationBackend as BaseBackend
-from sqlalchemy import Engine, select
+from sqlalchemy import select
 
 from starlette.requests import Request
-from models import User
+from models import User, engine
 from sqlalchemy.orm import Session
 
 
 class AuthenticationBackend(BaseBackend):
-    def __init__(self, secret_key: str, engine: Engine) -> None:
-        super().__init__(secret_key=secret_key)
-        self.engine = engine
 
     async def login(self, request: Request) -> bool:
         form = await request.form()
@@ -21,7 +18,7 @@ class AuthenticationBackend(BaseBackend):
 
         hash_password = hashlib.sha256(password.encode()).hexdigest()
 
-        with Session(self.engine) as session:
+        with Session(engine) as session:
             user = session.scalars(select(User).where(User.username == username).where(User.password == hash_password)).all()
             if not user:
                 return False
@@ -31,7 +28,6 @@ class AuthenticationBackend(BaseBackend):
         return True
 
     async def logout(self, request: Request) -> bool:
-        # Usually you'd want to just clear the session
         request.session.clear()
         return True
 
@@ -41,6 +37,5 @@ class AuthenticationBackend(BaseBackend):
         if not user:
             return False
 
-        # Check the token
         return True
 

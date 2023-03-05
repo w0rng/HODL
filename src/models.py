@@ -1,10 +1,16 @@
-from sqlalchemy import Column, Integer, String, Float, DateTime, Enum, ForeignKey
+import os
+
+from sqlalchemy import Column, Integer, String, Float, DateTime, Enum, ForeignKey, create_engine
 from sqlalchemy.orm import declarative_base, relationship
 from datetime import datetime
 import enum
 
-Base = declarative_base()
 
+Base = declarative_base()
+engine = create_engine(
+    os.environ["DB_URL"],
+    connect_args={"check_same_thread": False},
+)
 
 class Side(enum.Enum):
     buy = "BUY"
@@ -26,7 +32,7 @@ class Currency(Base):
     amount_in_base = Column(Float)
     start = Column(DateTime, nullable=True, default=datetime.utcnow)
     interval = Column(Integer)
-    last_update = Column(DateTime, nullable=True, default=datetime.utcnow)
+    last_update = Column(DateTime, nullable=True, default=None)
 
 
 class Order(Base):

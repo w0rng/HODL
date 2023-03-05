@@ -24,6 +24,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "async-timeout"
+version = "4.0.2"
+requires_python = ">=3.6"
+summary = "Timeout context manager for asyncio programs"
+
+[[package]]
 name = "attrs"
 version = "22.2.0"
 requires_python = ">=3.6"
@@ -110,6 +116,15 @@ requires_python = ">=3.6"
 summary = "cryptography is a package which provides cryptographic recipes and primitives to Python developers."
 dependencies = [
     "cffi>=1.12",
+]
+
+[[package]]
+name = "dramatiq"
+version = "1.14.1"
+requires_python = ">=3.7"
+summary = "Background Processing for Python 3."
+dependencies = [
+    "prometheus-client>=0.2",
 ]
 
 [[package]]
@@ -200,6 +215,12 @@ requires_python = ">=3.7"
 summary = "Safely add untrusted strings to HTML/XML markup."
 
 [[package]]
+name = "prometheus-client"
+version = "0.16.0"
+requires_python = ">=3.6"
+summary = "Python client for the Prometheus monitoring system."
+
+[[package]]
 name = "pyasn1"
 version = "0.4.8"
 summary = "ASN.1 types and codecs"
@@ -267,6 +288,15 @@ name = "pyyaml"
 version = "6.0"
 requires_python = ">=3.6"
 summary = "YAML parser and emitter for Python"
+
+[[package]]
+name = "redis"
+version = "4.5.1"
+requires_python = ">=3.7"
+summary = "Python client for Redis database and key-value store"
+dependencies = [
+    "async-timeout>=4.0.2",
+]
 
 [[package]]
 name = "requests"
@@ -455,7 +485,7 @@ dependencies = [
 
 [metadata]
 lock_version = "4.1"
-content_hash = "sha256:37a22f8f8b99ab0468f8e2bbdd8bac42e59a3acedbbf0d30338c2a6c2e0f1386"
+content_hash = "sha256:96e65f18e0102f2fb76fa8d5aafff189dc5532aff0729f160bbdf06810e2ccde"
 
 [metadata.files]
 "anyio 3.6.2" = [
@@ -465,6 +495,10 @@ content_hash = "sha256:37a22f8f8b99ab0468f8e2bbdd8bac42e59a3acedbbf0d30338c2a6c2
 "apscheduler 3.10.1" = [
     {url = "https://files.pythonhosted.org/packages/d0/08/952d9570f4897dc2b30166fca5afd3a2cd19b3d408abdb470978484e8a09/APScheduler-3.10.1-py3-none-any.whl", hash = "sha256:e813ad5ada7aff36fb08cdda746b520531eaac7757832abc204868ba78e0c8f6"},
     {url = "https://files.pythonhosted.org/packages/ea/ed/f1ad88e88208c24db80dcaae7a5a339bb283956984f8fa59933d2806413a/APScheduler-3.10.1.tar.gz", hash = "sha256:0293937d8f6051a0f493359440c1a1b93e882c57daf0197afeff0e727777b96e"},
+]
+"async-timeout 4.0.2" = [
+    {url = "https://files.pythonhosted.org/packages/54/6e/9678f7b2993537452710ffb1750c62d2c26df438aa621ad5fa9d1507a43a/async-timeout-4.0.2.tar.gz", hash = "sha256:2163e1640ddb52b7a8c80d0a67a08587e5d245cc9c553a74a847056bc2976b15"},
+    {url = "https://files.pythonhosted.org/packages/d6/c1/8991e7c5385b897b8c020cdaad718c5b087a6626d1d11a23e1ea87e325a7/async_timeout-4.0.2-py3-none-any.whl", hash = "sha256:8ca1e4fcf50d07413d66d1a5e416e42cfdf5851c981d679a09851a6853383b3c"},
 ]
 "attrs 22.2.0" = [
     {url = "https://files.pythonhosted.org/packages/21/31/3f468da74c7de4fcf9b25591e682856389b3400b4b62f201e65f15ea3e07/attrs-22.2.0.tar.gz", hash = "sha256:c9227bfc2f01993c03f68db37d1d15c9690188323c067c641f1a35ca58185f99"},
@@ -678,6 +712,10 @@ content_hash = "sha256:37a22f8f8b99ab0468f8e2bbdd8bac42e59a3acedbbf0d30338c2a6c2
     {url = "https://files.pythonhosted.org/packages/f7/c0/daaeedc40e3385f01bb1af8c001ac214dcea6716b61efebabf9066b6f619/cryptography-39.0.2-cp36-abi3-manylinux_2_24_x86_64.whl", hash = "sha256:e8a0772016feeb106efd28d4a328e77dc2edae84dfbac06061319fdb669ff828"},
     {url = "https://files.pythonhosted.org/packages/fa/f3/f4b8c175ea9a1de650b0085858059050b7953a93d66c97ed89b93b232996/cryptography-39.0.2.tar.gz", hash = "sha256:bc5b871e977c8ee5a1bbc42fa8d19bcc08baf0c51cbf1586b0e87a2694dde42f"},
 ]
+"dramatiq 1.14.1" = [
+    {url = "https://files.pythonhosted.org/packages/08/62/309f2dd9a9e7427434b826ce306fef72eb943582a89215dbedf37c593fd2/dramatiq-1.14.1.tar.gz", hash = "sha256:cfef1a45ffa7d6c3d2571413658429742a74c3d7503c7ca69b376bd2fb60958d"},
+    {url = "https://files.pythonhosted.org/packages/3b/5e/606d6a3cc5a7d167fa6f74bfdaf455b36c165439be25d427974180265d7f/dramatiq-1.14.1-py3-none-any.whl", hash = "sha256:8a27fbee4b0b4139edf1d87717c49fe4138c233247fd43ab9e39c4313eedb8fa"},
+]
 "fastapi 0.92.0" = [
     {url = "https://files.pythonhosted.org/packages/11/92/6577adcb71d85378700765b5298929ac0fcafaa47a7c39bdc205289d9c74/fastapi-0.92.0.tar.gz", hash = "sha256:023a0f5bd2c8b2609014d3bba1e14a1d7df96c6abea0a73070621c9862b9a4de"},
     {url = "https://files.pythonhosted.org/packages/cd/ec/878318da126d6c83641d23644899ca94838b839490bcdbcddad6814fe07a/fastapi-0.92.0-py3-none-any.whl", hash = "sha256:ae7b97c778e2f2ec3fb3cb4fb14162129411d99907fb71920f6d69a524340ebf"},
@@ -828,6 +866,10 @@ content_hash = "sha256:37a22f8f8b99ab0468f8e2bbdd8bac42e59a3acedbbf0d30338c2a6c2
     {url = "https://files.pythonhosted.org/packages/ea/60/2400ba59cf2465fa136487ee7299f52121a9d04b2cf8539ad43ad10e70e8/MarkupSafe-2.1.2-cp311-cp311-win_amd64.whl", hash = "sha256:e55e40ff0cc8cc5c07996915ad367fa47da6b3fc091fdadca7f5403239c5fec3"},
     {url = "https://files.pythonhosted.org/packages/f9/aa/ebcd114deab08f892b1d70badda4436dbad1747f9e5b72cffb3de4c7129d/MarkupSafe-2.1.2-cp310-cp310-musllinux_1_1_x86_64.whl", hash = "sha256:7313ce6a199651c4ed9d7e4cfb4aa56fe923b1adf9af3b420ee14e6d9a73df65"},
 ]
+"prometheus-client 0.16.0" = [
+    {url = "https://files.pythonhosted.org/packages/5b/8e/6a546e439b4366ab9eab0a736876eb1e1916dd93b4a1fa560ef711d24f8c/prometheus_client-0.16.0-py3-none-any.whl", hash = "sha256:0836af6eb2c8f4fed712b2f279f6c0a8bbab29f9f4aa15276b91c7cb0d1616ab"},
+    {url = "https://files.pythonhosted.org/packages/d0/55/9e34c73e1e490b105b4cd13d08497b1f7cb086a260e4161b7b7c2928b196/prometheus_client-0.16.0.tar.gz", hash = "sha256:a03e35b359f14dd1630898543e2120addfdeacd1a6069c1367ae90fd93ad3f48"},
+]
 "pyasn1 0.4.8" = [
     {url = "https://files.pythonhosted.org/packages/62/1e/a94a8d635fa3ce4cfc7f506003548d0a2447ae76fd5ca53932970fe3053f/pyasn1-0.4.8-py2.py3-none-any.whl", hash = "sha256:39c7e2ec30515947ff4e87fb6f456dfc6e84857d34be479c9d4a4ba4bf46aa5d"},
     {url = "https://files.pythonhosted.org/packages/a4/db/fffec68299e6d7bad3d504147f9094830b704527a7fc098b721d38cc7fa7/pyasn1-0.4.8.tar.gz", hash = "sha256:aef77c9fb94a3ac588e87841208bdec464471d9871bd5050a287cc9a475cd0ba"},
@@ -970,6 +1012,10 @@ content_hash = "sha256:37a22f8f8b99ab0468f8e2bbdd8bac42e59a3acedbbf0d30338c2a6c2
     {url = "https://files.pythonhosted.org/packages/f5/6f/b8b4515346af7c33d3b07cd8ca8ea0700ca72e8d7a750b2b87ac0268ca4e/PyYAML-6.0-cp39-cp39-macosx_10_9_x86_64.whl", hash = "sha256:055d937d65826939cb044fc8c9b08889e8c743fdc6a32b33e2390f66013e449b"},
     {url = "https://files.pythonhosted.org/packages/f8/54/799b059314b13e1063473f76e908f44106014d18f54b16c83a16edccd5ec/PyYAML-6.0-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:d4b0ba9512519522b118090257be113b9468d804b19d63c71dbcf4a48fa32358"},
     {url = "https://files.pythonhosted.org/packages/fc/48/531ecd926fe0a374346dd811bf1eda59a95583595bb80eadad511f3269b8/PyYAML-6.0-cp311-cp311-win32.whl", hash = "sha256:bfaef573a63ba8923503d27530362590ff4f576c626d86a9fed95822a8255fd7"},
+]
+"redis 4.5.1" = [
+    {url = "https://files.pythonhosted.org/packages/06/b5/328851ee54bbf00cc609671a658e0420d88aa2b4f5ace7aa669932d59a0e/redis-4.5.1-py3-none-any.whl", hash = "sha256:5deb072d26e67d2be1712603bfb7947ec3431fb0eec9c578994052e33035af6d"},
+    {url = "https://files.pythonhosted.org/packages/44/f4/6e22050869494f304c8f55341f45e68664c1da75d608a02832c70be96f6a/redis-4.5.1.tar.gz", hash = "sha256:1eec3741cda408d3a5f84b78d089c8b8d895f21b3b050988351e925faf202864"},
 ]
 "requests 2.28.2" = [
     {url = "https://files.pythonhosted.org/packages/9d/ee/391076f5937f0a8cdf5e53b701ffc91753e87b07d66bae4a09aa671897bf/requests-2.28.2.tar.gz", hash = "sha256:98b1b2782e3c6c4904938b84c0eb932721069dfdb9134313beff7c83c2df24bf"},
