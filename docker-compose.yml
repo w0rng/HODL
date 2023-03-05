@@ -9,8 +9,13 @@ services:
     volumes:
       - db:/db
       - ./src:/app
-    command: python main.py
+    command: uvicorn admin.main:app --host 0.0.0.0 --port 80 --reload
     env_file: .env
+    ports:
+      - "8000:80"
+
+  redis:
+    image: redis:alpine
 
 volumes:
   db:
