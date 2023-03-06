@@ -21,7 +21,7 @@ class Exchange:
                 Order(
                     currency=currency,
                     amount=currency.amount_in_base,
-                    price=self.client.avg_price(currency.symbol),
+                    price=self.client.avg_price(currency.symbol)["price"],
                     side=Side.buy,
                 )
             )
