@@ -17,11 +17,12 @@ class Exchange:
             quoteOrderQty=currency.amount_in_base,
         )
         with Session(engine) as session:
+            price = float(self.client.avg_price(currency.symbol)["price"])
             session.add(
                 Order(
                     currency=currency,
-                    amount=currency.amount_in_base,
-                    price=self.client.avg_price(currency.symbol)["price"],
+                    amount=1/price*currency.amount_in_base,
+                    price=price,
                     side=Side.buy,
                 )
             )

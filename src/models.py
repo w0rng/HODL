@@ -34,6 +34,9 @@ class Currency(Base):
     interval = Column(Integer)
     last_update = Column(DateTime, nullable=True, default=None)
 
+    def __str__(self):
+        return self.symbol
+
 
 class Order(Base):
     __tablename__ = "order"

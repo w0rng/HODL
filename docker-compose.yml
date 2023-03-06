@@ -19,11 +19,6 @@ services:
     command: python bot/main.py
     ports: []
 
-  dramatiq_worker:
-    <<: *app
-    command: dramatiq bot.excanges.binance
-    ports: []
-
   redis:
     image: redis:alpine
 

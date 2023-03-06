@@ -12,3 +12,4 @@ class OrderAdmin(ModelView, model=Order):
     can_edit = False
     can_create = False
     can_delete = False
+    column_list = [Order.currency, Order.price, Order.amount, Order.created_at]
