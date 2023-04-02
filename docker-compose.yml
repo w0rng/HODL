@@ -2,9 +2,7 @@ version: "3.8"
 
 services:
   admin_panel: &app
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: w0rng/hodl:latest
     restart: unless-stopped
     volumes:
       - db:/db
