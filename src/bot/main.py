@@ -1,13 +1,14 @@
 import os
+from datetime import datetime, timedelta
 from typing import Type
 
+import requests
+import sentry_sdk
 from apscheduler.schedulers.blocking import BlockingScheduler
 from apscheduler.triggers.cron import CronTrigger
-
-from models import engine, Currency
-from sqlalchemy.orm import Session
-from datetime import datetime, timedelta
 from bot.excanges.binance import Exchange
+from models import Currency, engine
+from sqlalchemy.orm import Session
 
 
 class Bot:
@@ -15,7 +16,7 @@ class Bot:
 
     @classmethod
     def run(cls):
-        print("run", flush=True)
+        requests.post(os.getenv("HEALTH_CHECK"))
         with Session(engine) as session:
             for currency in cls._get_currencies():
                 cls.exchange.place_order(currency)
@@ -42,7 +43,7 @@ class Bot:
         return result
 
     @staticmethod
-    def _load_all_currencies() -> list[Type[Currency]]:
+    def _load_all_currencies() -> list[Currency]:
         with Session(engine) as session:
             return session.query(Currency).all()
 
@@ -60,4 +61,5 @@ def start():
 
 
 if __name__ == "__main__":
+    sentry_sdk.init(os.getenv("SENTRY_DNS"))
     start()
