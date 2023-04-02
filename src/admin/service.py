@@ -11,6 +11,4 @@ def create_user(username: str, password: str):
         all_users = session.scalars(select(User).where(User.username == username)).all()
         if all_users:
             return
-        user = User(username=username, password=hash_password)
-        session.add(user)
-        session.commit()
+    User(username=username, password=hash_password).save()

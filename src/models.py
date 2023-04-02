@@ -1,10 +1,9 @@
-import os
-
-from sqlalchemy import Column, Integer, String, Float, DateTime, Enum, ForeignKey, create_engine
-from sqlalchemy.orm import declarative_base, relationship
-from datetime import datetime
 import enum
+import os
+from datetime import datetime
 
+from sqlalchemy import Column, DateTime, Enum, Float, ForeignKey, Integer, String, create_engine
+from sqlalchemy.orm import Session, declarative_base, relationship
 
 Base = declarative_base()
 engine = create_engine(
@@ -12,19 +11,29 @@ engine = create_engine(
     connect_args={"check_same_thread": False},
 )
 
+
 class Side(enum.Enum):
     buy = "BUY"
     sell = "SELL"
 
 
-class User(Base):
+class Savable(Base):
+    __abstract__ = True
+
+    def save(self):
+        with Session(engine) as session:
+            session.add(self)
+            session.commit()
+
+
+class User(Savable):
     __tablename__ = "user"
 
     username = Column(String, primary_key=True, unique=True)
     password = Column(String)
 
 
-class Currency(Base):
+class Currency(Savable):
     __tablename__ = "currency"
 
     id = Column(Integer, primary_key=True)
@@ -38,7 +47,7 @@ class Currency(Base):
         return self.symbol
 
 
-class Order(Base):
+class Order(Savable):
     __tablename__ = "order"
 
     id = Column(Integer, primary_key=True)
@@ -47,5 +56,5 @@ class Order(Base):
     price = Column(Float)
     created_at = Column(DateTime, nullable=True, default=datetime.utcnow)
 
-    currency_id = Column(Integer, ForeignKey('currency.id'))
+    currency_id = Column(Integer, ForeignKey("currency.id"))
     currency = relationship("Currency", foreign_keys=[currency_id])
