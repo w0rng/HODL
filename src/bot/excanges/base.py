@@ -7,7 +7,7 @@ class BaseExchange:
         self.api_secret = api_secret
 
     def place_order(self, currency: Currency) -> Order:
-        order = self.place_order(currency)
+        order = self._place_order(currency)
         order.save()
         return order
 
