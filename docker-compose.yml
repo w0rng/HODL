@@ -6,11 +6,12 @@ services:
     restart: unless-stopped
     volumes:
       - db:/db
-      - ./src:/app
     command: uvicorn admin.main:app --host 0.0.0.0 --port 80 --reload
     env_file: .env
     ports:
       - "8000:80"
+    depends_on:
+      - redis
 
   bot:
     <<: *app
