@@ -1,3 +1,6 @@
+from logging import getLogger
+
+from binance.error import ClientError
 from binance.spot import Spot
 from models import Currency, Order, Side
 
@@ -11,12 +14,15 @@ class Exchange(BaseExchange):
 
     def _place_order(self, currency: Currency) -> Order:
         price = float(self.account.avg_price(currency.symbol)["price"])
-        self.account.new_order(
-            symbol=f"{currency.symbol}",
-            side="BUY",
-            type="MARKET",
-            quoteOrderQty=currency.amount_in_base,
-        )
+        try:
+            self.account.new_order(
+                symbol=f"{currency.symbol}",
+                side="BUY",
+                type="MARKET",
+                quoteOrderQty=currency.amount_in_base,
+            )
+        except ClientError as error:
+            logger.warning("Failed to place order: %s", error)
 
         return Order(
             currency=currency,
