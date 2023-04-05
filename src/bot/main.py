@@ -9,6 +9,7 @@ from apscheduler.schedulers.blocking import BlockingScheduler
 from apscheduler.triggers.cron import CronTrigger
 from bot.excanges.binance import Exchange
 from models import Currency, engine
+from sentry_sdk.integrations.logging import LoggingIntegration
 from sqlalchemy.orm import Session
 
 logger = logging.getLogger(__name__)
@@ -70,7 +71,7 @@ def start():
 
 
 if __name__ == "__main__":
-    sentry_logging = sentry_sdk.integrations.logging.LoggingIntegration(
+    sentry_logging = LoggingIntegration(
         level=logging.INFO,
         event_level=logging.ERROR,
     )
