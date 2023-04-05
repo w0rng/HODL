@@ -6,6 +6,8 @@ from models import Currency, Order, Side
 
 from .base import BaseExchange
 
+logger = getLogger(__name__)
+
 
 class Exchange(BaseExchange):
     @property
@@ -26,7 +28,7 @@ class Exchange(BaseExchange):
 
         return Order(
             currency=currency,
-            amount=1/price*currency.amount_in_base,
+            amount=1 / price * currency.amount_in_base,
             price=price,
             side=Side.buy,
         )
